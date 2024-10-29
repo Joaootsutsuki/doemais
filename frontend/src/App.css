@@ -1,0 +1,278 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  color: #3b3b3b;
+  background-color: #fff4f9;
+}
+
+.loginBox {
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 10;
+  top: 80px;
+}
+
+.loginContent {
+  width: 55%;
+  max-width: 1200px;
+  height: 85%;
+  background-color: #fff4f9;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+.banner-container {
+  width: 50%;
+}
+
+.banner-container img {
+  width: 85%;
+  border-radius: 15px;
+  margin: 0 0 0 32px;
+}
+.loginForm {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 50px;
+}
+
+.titulo {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 30px;
+  font-size: 3.5rem;
+}
+
+.titulo h1 {
+  font-size: 4rem;
+}
+
+.titulo h1:nth-of-type(2) {
+  color: #ba1644;
+}
+
+.login-inputs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.login-inputs span {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.login-inputs input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.submitButton {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.submitButton button {
+  width: 100%;
+  padding: 15px;
+  background-color: #ba1644;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.submitButton button:hover {
+  background-color: #9f123a;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.divider hr {
+  flex-grow: 1;
+  height: 1px;
+  background-color: #ccc;
+  border: none;
+}
+
+.divider span {
+  margin: 0 10px;
+  font-weight: bold;
+  color: #ba1644;
+  font-size: 2rem;
+}
+
+.cadastro-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.cadastro-link a {
+  color: #ba1644;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.cadastro-link a:hover {
+  text-decoration: underline;
+}
+
+.esqueceu-senha {
+  width: 100%;
+  text-align: right;
+  margin-top: 12px;
+}
+
+.esqueceu-senha a {
+  color: #aaa6a6;
+}
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background: #fff4f9;
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+nav .logo {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 24px;
+}
+.logo .menu-icon {
+  color: #333;
+  font-size: 24px;
+  margin-right: 30px;
+  cursor: pointer;
+}
+.logo .logo-name {
+  color: #333;
+  font-size: 22px;
+  font-weight: 500;
+}
+nav .sidebar {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 260px;
+  padding: 20px 0;
+  background-color: #fff;
+  box-shadow: 0 5px 1px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  z-index: 100;
+}
+nav.open .sidebar {
+  left: 0;
+}
+.sidebar .sidebar-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 16px;
+}
+.sidebar-content .list {
+  list-style: none;
+}
+.list .nav-link {
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 14px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.lists .nav-link:hover {
+  background-color: #4070f4;
+}
+.nav-link .icon {
+  margin-right: 14px;
+  font-size: 20px;
+  color: #707070;
+}
+.nav-link .link {
+  font-size: 16px;
+  color: #707070;
+  font-weight: 400;
+}
+.lists .nav-link:hover .icon,
+.lists .nav-link:hover .link {
+  color: #fff;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  height: 1000vh;
+  width: 200%;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+nav.open ~ .overlay {
+  opacity: 1;
+  left: 260px;
+  pointer-events: auto;
+}
+
+.logo img {
+  width: 150px;
+}
+
+.slogan h2 {
+  font-size: 1.5rem;
+  margin: 0 0 0 20px;
+}
+.slogan {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.error-message {
+  color: rgb(255, 72, 72);
+  font-size: 1.4rem;
+  margin: 0 0 10px 0;
+}

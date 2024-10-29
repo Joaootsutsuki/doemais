@@ -1,22 +1,22 @@
-const tokenService = require('../config/tokenService');
+const admin = require("../config/firebaseAdmin");
 
-function authenticate(req, res, next) {
+async function authenticate(req, res, next) {
+  const idToken = req.body.token;
 
-    const token = req.headers.authorization?.split('.')[1];
+  if (!idToken) {
+    return res.status(401).json({ message: "Acesso Negado. Nenhum token fornecido." });
+  }
 
-    if(!token){
-        return res.status(401).json({message: "Acesso negado. Nenhum token fornecido."});
-    }
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
+    const { uid, email, role, name } = decodedToken;
 
-    try{
+    req.user = { uid, email, role, name };
 
-        const decoded = tokenService.verifyToken(token);
-        req.user = decoded;
-        next();
-
-    }catch(err){
-        return res.status(400).json({message: "Token inválido ou expirado", err})
-    }
+    res.status(200).json({ message: "Autenticado com sucesso" });
+  } catch (error) {
+    return res.status(401).json({ message: "Token inválido ou expirado", error });
+  }
 }
 
 module.exports = authenticate;
