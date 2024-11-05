@@ -12,8 +12,7 @@ async function authenticate(req, res, next) {
     const { uid, email, role, name } = decodedToken;
 
     req.user = { uid, email, role, name };
-
-    res.status(200).json({ message: "Autenticado com sucesso" });
+    res.status(200).json({ message: "Autenticado com sucesso", user: req.user });
   } catch (error) {
     return res.status(401).json({ message: "Token inválido ou expirado", error });
   }

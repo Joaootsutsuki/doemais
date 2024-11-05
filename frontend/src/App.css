@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 * {
   padding: 0;
   margin: 0;
@@ -12,13 +13,14 @@ html {
 }
 
 body {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.5rem;
   color: #3b3b3b;
   background-color: #fff4f9;
 }
 
-.loginBox {
+.loginBox,
+.redefinirSenhaBox {
   width: 100%;
   height: 90vh;
   display: flex;
@@ -29,7 +31,8 @@ body {
   top: 80px;
 }
 
-.loginContent {
+.loginContent,
+.redefinirSenhaContent {
   width: 55%;
   max-width: 1200px;
   height: 85%;
@@ -50,7 +53,8 @@ body {
   border-radius: 15px;
   margin: 0 0 0 32px;
 }
-.loginForm {
+.loginForm,
+.redefinirSenhaForm {
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -59,7 +63,8 @@ body {
   padding: 0 50px;
 }
 
-.titulo {
+.loginForm .titulo,
+.redefinirSenhaForm .titulo {
   display: flex;
   gap: 5px;
   margin-bottom: 30px;
@@ -74,18 +79,21 @@ body {
   color: #ba1644;
 }
 
-.login-inputs {
+.login-inputs,
+.redefinirSenha-inputs {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.login-inputs span {
+.login-inputs span,
+.redefinirSenha-inputs span {
   margin-bottom: 8px;
   font-weight: bold;
 }
 
-.login-inputs input {
+.login-inputs input,
+.redefinirSenha-inputs input {
   width: 100%;
   padding: 15px;
   margin-bottom: 20px;
@@ -94,12 +102,14 @@ body {
   font-size: 1.5rem;
 }
 
-.submitButton {
+.loginForm .submitButton,
+.redefinirSenhaForm .submitButton {
   width: 100%;
   margin-top: 10px;
 }
 
-.submitButton button {
+.loginForm .submitButton button,
+.redefinirSenhaForm .submitButton button {
   width: 100%;
   padding: 15px;
   background-color: #ba1644;
@@ -110,7 +120,8 @@ body {
   cursor: pointer;
 }
 
-.submitButton button:hover {
+.loginForm .submitButton button:hover,
+.redefinirSenhaForm .submitButton button:hover {
   background-color: #9f123a;
 }
 
@@ -272,7 +283,152 @@ nav.open ~ .overlay {
   cursor: pointer;
 }
 .error-message {
-  color: rgb(255, 72, 72);
+  color: #e84c3d;
   font-size: 1.4rem;
   margin: 0 0 10px 0;
+}
+
+.success-message {
+  color: #18bb9c;
+  font-size: 1.4rem;
+  margin: 0 0 10px 0;
+}
+
+.warning-message {
+  color: #f39c11;
+  font-size: 1.4rem;
+  margin: 0 0 10px 0;
+}
+
+.information-message {
+  color: #3598db;
+  font-size: 1.4rem;
+  margin: 0 0 10px 0;
+}
+
+.acesso-negado {
+  font-size: 40px;
+  color: red;
+  font-weight: bold;
+}
+.container-acesso-negado {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sobre-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+  height: 100vh;
+  width: 100%;
+}
+
+.sobre-container .content {
+  max-width: 630px;
+  margin-right: 40px;
+}
+
+.sobre-container .content h1 {
+  color: #c80e43;
+  font-size: 5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.sobre-container .content p,
+.sobre-container .content p span {
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 15px;
+  font-size: 2.2rem;
+  text-align: justify;
+}
+.sobre-container .content p span {
+  color: #c80e43;
+  font-weight: bold;
+}
+
+.sobre-container .content p::first-letter {
+  margin-left: 20px;
+}
+
+.sobre-container .content .buttons {
+  display: flex;
+  gap: 40px;
+  margin-top: 35px;
+  justify-content: center;
+  align-items: center;
+}
+
+.sobre-container .content .buttons a {
+  width: 40%;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border-radius: 20px;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+  text-decoration: none;
+}
+
+.sobre-container .acessar-btn {
+  background-color: #d02b3b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.sobre-container .cadastrar-btn {
+  background-color: white;
+  color: #d02b3b;
+  border: 2px solid #d02b3b;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.sobre-container .acessar-btn:hover {
+  background-color: #c02636;
+  transform: scale(1.01);
+  transition: all 0.1s ease-in-out;
+}
+
+.sobre-container .cadastrar-btn:hover {
+  background-color: #e6e6e6;
+  transform: scale(1.02);
+  transition: all 0.1s ease-in-out;
+}
+
+.sobre-container .sobre-image img {
+  max-width: 510px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  margin: 0 0 0 40px;
+}
+
+.not-found-page-box {
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-page-box h1 {
+  font-size: 10rem;
+}
+.not-found-page-box h2,
+.not-found-page-box p {
+  padding-bottom: 20px;
 }

@@ -1,22 +1,26 @@
 import React, { useRef, useState, useEffect } from "react";
 import logotipo from "../assets/logotipo.png";
+import Cookies from "js-cookie";
+import { Link } from "react-router-dom";
 
 function Sidebar() {
-  const navBarRef = useRef(null); // Referência para o elemento nav
-  const overlayRef = useRef(null); // Referência para o overlay
-  const [isOpen, setIsOpen] = useState(false); // Estado para controlar se a navbar está aberta
+  const navBarRef = useRef(null);
+  const overlayRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  // Função para alternar a classe "open"
   const toggleNavBar = () => {
-    setIsOpen(!isOpen); // Alterna o estado
+    setIsOpen(!isOpen);
   };
 
-  // Função para fechar a navbar ao clicar no overlay
   const closeNavBar = () => {
-    setIsOpen(false); // Fecha a navbar
+    setIsOpen(false);
   };
 
-  // useEffect para adicionar/remover classes com base no estado
+  const Logout = () => {
+    Cookies.remove("user");
+    Cookies.remove("auth_token");
+  };
+
   useEffect(() => {
     const navBar = navBarRef.current;
     const overlay = overlayRef.current;
@@ -63,10 +67,10 @@ function Sidebar() {
                 </a>
               </li>
               <li className="list">
-                <a href="#" className="nav-link">
+                <Link to="/login" className="nav-link" onClick={Logout()}>
                   <i className="bx bx-log-out icon"></i>
                   <span className="link">Logout</span>
-                </a>
+                </Link>
               </li>
             </div>
           </div>

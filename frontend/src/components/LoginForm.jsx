@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
-import { useMutation } from "react-query";
-import { useContext } from "react";
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebaseConfig";
 import banner from "../assets/banner-01.png";
+import Cookies from "js-cookie";
+import { useNavigate, Link } from "react-router-dom";
+import { useState } from "react";
+
+// LOGIN TESTE joao.cz@hotmail.com joao1234
 
 function LoginForm() {
   const {
@@ -13,21 +16,37 @@ function LoginForm() {
     formState: { errors },
   } = useForm();
 
+  const [authError, setAuthError] = useState();
+  const navigate = useNavigate();
+
   const onSubmit = (dataForm) => {
-    console.log(dataForm);
+    setAuthError("");
 
     signInWithEmailAndPassword(auth, dataForm.email, dataForm.senha)
       .then((userCredential) => {
         return userCredential.user.getIdToken();
       })
       .then((idToken) => {
+        Cookies.set("auth_token", idToken, { expires: 5 / 24 }); // expira em 5h
+
         return axios.post("http://localhost:5000/login", { token: idToken });
       })
       .then((response) => {
-        console.log("Autenticado com sucesso:", response.data);
+        Cookies.set(
+          "user",
+          JSON.stringify({
+            uid: response.data.user.uid,
+            email: response.data.user.email,
+            role: response.data.user.role,
+            name: response.data.user.name,
+          }),
+          { expires: 5 / 24 } // expira em 5h
+        );
+        navigate("/");
       })
       .catch((error) => {
         console.error("Erro na autenticação:", error);
+        setAuthError("E-mail ou senha incorretos. Por favor, tente novamente.");
       });
   };
 
@@ -43,6 +62,7 @@ function LoginForm() {
             <h1>Meu DOE+</h1>
           </div>
 
+          {authError && <p className="error-message">{authError}</p>}
           {errors?.senha?.type === "maxLength" && (
             <p className="error-message">Senha pode ter no maximo 4096 caracteres</p>
           )}
@@ -69,7 +89,7 @@ function LoginForm() {
             <button type="submit">Entrar</button>
           </div>
           <div className="esqueceu-senha">
-            <a href="">Esqueceu a senha?</a>
+            <Link to="/reset-password">Esqueceu a senha?</Link>
           </div>
 
           <div className="divider">
