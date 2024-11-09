@@ -4,7 +4,7 @@ const authorizeRole = require("../middlewares/authorizeRole");
 const admin = require("../config/firebaseAdmin");
 
 const router = express.Router();
-
+/*
 router.get("/", authenticate, authorizeRole("admin", "tecnico", "doador", "instituicao"), (req, res) => {
   res.json({ message: "Welcome to the HOMEPAGE" });
 });
@@ -29,7 +29,8 @@ router.get("/cadastro", (req, res) => {
 router.get("/login", (req, res) => {
   res.json({ message: "Login geral" });
 });
+*/
 
-router.post("/login", authenticate);
+router.post("/user-auth", authenticate);
 
 module.exports = router;

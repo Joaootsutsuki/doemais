@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import logotipo from "../assets/logotipo.png";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
+import config from "../config/urlConfig";
 
 function Sidebar() {
   const navBarRef = useRef(null);
@@ -17,8 +18,20 @@ function Sidebar() {
   };
 
   const Logout = () => {
-    Cookies.remove("user");
-    Cookies.remove("auth_token");
+    Cookies.remove("user", {
+      expires: 1,
+      path: "/",
+      domain: config.webDomain,
+      secure: true,
+      sameSite: "None",
+    });
+    Cookies.remove("auth_token", {
+      expires: 1,
+      path: "/",
+      domain: config.webDomain,
+      secure: true,
+      sameSite: "None",
+    });
   };
 
   useEffect(() => {
@@ -67,7 +80,7 @@ function Sidebar() {
                 </a>
               </li>
               <li className="list">
-                <Link to="/login" className="nav-link" onClick={Logout()}>
+                <Link to="/login" className="nav-link" onClick={() => Logout()}>
                   <i className="bx bx-log-out icon"></i>
                   <span className="link">Logout</span>
                 </Link>

@@ -20,15 +20,15 @@ body {
 }
 
 .loginBox,
-.redefinirSenhaBox {
+.redefinirSenhaBox,
+.cadastro-container {
   width: 100%;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   z-index: 10;
-  top: 80px;
 }
 
 .loginContent,
@@ -64,7 +64,8 @@ body {
 }
 
 .loginForm .titulo,
-.redefinirSenhaForm .titulo {
+.redefinirSenhaForm .titulo,
+.cadastro-box .titulo {
   display: flex;
   gap: 5px;
   margin-bottom: 30px;
@@ -103,13 +104,18 @@ body {
 }
 
 .loginForm .submitButton,
-.redefinirSenhaForm .submitButton {
+.redefinirSenhaForm .submitButton,
+.cadastro-box .submitButton {
   width: 100%;
   margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .loginForm .submitButton button,
-.redefinirSenhaForm .submitButton button {
+.redefinirSenhaForm .submitButton button,
+.cadastro-box .submitButton button {
   width: 100%;
   padding: 15px;
   background-color: #ba1644;
@@ -120,8 +126,14 @@ body {
   cursor: pointer;
 }
 
+.cadastro-box .submitButton button {
+  width: 35% !important;
+  font-size: 1.8rem !important;
+}
+
 .loginForm .submitButton button:hover,
-.redefinirSenhaForm .submitButton button:hover {
+.redefinirSenhaForm .submitButton button:hover,
+.cadastro-box .submitButton button:hover {
   background-color: #9f123a;
 }
 
@@ -143,7 +155,7 @@ body {
   margin: 0 10px;
   font-weight: bold;
   color: #ba1644;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .cadastro-link {
@@ -288,6 +300,12 @@ nav.open ~ .overlay {
   margin: 0 0 10px 0;
 }
 
+.cadastro-form .error-message {
+  color: #e84c3d;
+  font-size: 1rem !important;
+  margin: 0 !important;
+}
+
 .success-message {
   color: #18bb9c;
   font-size: 1.4rem;
@@ -387,7 +405,8 @@ nav.open ~ .overlay {
   cursor: pointer;
 }
 
-.sobre-container .cadastrar-btn {
+.sobre-container .cadastrar-btn,
+.home-page-container .content-box .cadastrar-btn {
   background-color: white;
   color: #d02b3b;
   border: 2px solid #d02b3b;
@@ -402,7 +421,8 @@ nav.open ~ .overlay {
   transition: all 0.1s ease-in-out;
 }
 
-.sobre-container .cadastrar-btn:hover {
+.sobre-container .cadastrar-btn:hover,
+.home-page-container .content-box .cadastrar-btn:hover {
   background-color: #e6e6e6;
   transform: scale(1.02);
   transition: all 0.1s ease-in-out;
@@ -431,4 +451,207 @@ nav.open ~ .overlay {
 .not-found-page-box h2,
 .not-found-page-box p {
   padding-bottom: 20px;
+}
+
+.cadastro-box {
+  width: 55%;
+  max-width: 1200px;
+  height: 90%;
+  background-color: #fff4f9;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.3);
+  padding: 100px;
+  flex-direction: column;
+}
+
+.cadastro-box .select-account {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 0 20px 0;
+}
+.cadastro-box label {
+  padding-bottom: 10px;
+}
+
+.cadastro-box .select-account .account-radio label {
+  padding: 0 10px 0 4px;
+}
+
+.sublines {
+  color: #aaa6a6;
+  font-size: 1.2rem;
+}
+
+.sublines u {
+  cursor: pointer;
+}
+
+.sublines .checkbox-terms #terms {
+  margin: 0 5px 0 1px;
+}
+
+.sublines p {
+  padding: 10px 0 8px 0px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #333;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 14px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.cadastro-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 35px;
+  row-gap: 10px;
+  width: 100%;
+}
+
+.cadastro-container form {
+  width: 100%;
+}
+
+.cadastro-container .submitButton {
+  padding: 20px 0 0 0 !important;
+}
+
+.home-page-container {
+  width: 100%;
+  height: 100%;
+}
+
+.home-page-container header {
+  width: 100%;
+  height: 820px;
+  position: relative;
+  top: 80px;
+}
+
+.home-page-container header .background-color {
+  width: 100%;
+  height: 490px;
+  background-color: #dea1a1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.home-page-container header .home-page-banner {
+  position: absolute;
+  top: 130px;
+  left: 50%;
+  transform: translateX(-55%);
+  z-index: 10;
+}
+
+.home-page-container header .home-page-banner img {
+  width: 80%;
+  min-width: 640px;
+  min-height: 470px;
+}
+
+.home-page-container .content-box {
+  z-index: 20;
+  position: absolute;
+  width: 450px;
+  top: 360px;
+  left: 50%;
+  transform: translateX(-10%);
+  height: 350px;
+  background-color: #fff4f9;
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  text-align: justify;
+  font-weight: 500;
+  box-shadow: 12px 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.home-page-container .content-box span,
+.home-page-container .content-box .label-button {
+  color: #c45455;
+}
+
+.home-page-container .content-box p {
+  padding: 0 0 15px 0;
+}
+
+.home-page-container .content-box img {
+  width: 45px;
+  padding: 0 0 10px 0;
+}
+
+.home-page-container .content-box .cadastrar-btn {
+  width: 35%;
+  border-width: 1.9px;
+  border-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+}
+
+.box-btns-to-service .btns {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff4f9;
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.3);
+}
+
+.box-btns-to-service .btns .btn {
+  width: 300px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  margin: 40px;
+  border-radius: 15px;
+  box-shadow: 10px 9px 15px -3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+.box-btns-to-service .btns .btn:hover {
+  background-color: #e6e6e6;
+  transform: scale(1.02);
+  transition: all 0.2s ease-in-out;
+}
+
+.box-btns-to-service .btns .btn img {
+  width: 180px;
+}
+
+.box-btns-to-service .btns .btn span {
+  padding: 30px 0 0 0;
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.home-page-container main {
+  margin: 60px 0 0 0;
 }

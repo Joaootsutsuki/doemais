@@ -6,6 +6,7 @@ import banner from "../assets/banner-01.png";
 import Cookies from "js-cookie";
 import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
+import config from "../config/urlConfig";
 
 // LOGIN TESTE joao.cz@hotmail.com joao1234
 
@@ -24,12 +25,21 @@ function LoginForm() {
 
     signInWithEmailAndPassword(auth, dataForm.email, dataForm.senha)
       .then((userCredential) => {
+        console.log("Autenticação bem-sucedida:", userCredential);
         return userCredential.user.getIdToken();
       })
       .then((idToken) => {
-        Cookies.set("auth_token", idToken, { expires: 5 / 24 }); // expira em 5h
+        Cookies.set("auth_token", idToken, {
+          expires: 1,
+          path: "/",
+          domain: config.webDomain,
+          secure: true,
+          sameSite: "None",
+        });
 
-        return axios.post("http://localhost:5000/login", { token: idToken });
+        return axios.post(`${config.apiUrl}/user-auth`, {
+          token: idToken,
+        });
       })
       .then((response) => {
         Cookies.set(
@@ -40,13 +50,19 @@ function LoginForm() {
             role: response.data.user.role,
             name: response.data.user.name,
           }),
-          { expires: 5 / 24 } // expira em 5h
+          {
+            expires: 1,
+            path: "/",
+            domain: config.webDomain,
+            secure: true,
+            sameSite: "None",
+          }
         );
         navigate("/");
       })
       .catch((error) => {
-        console.error("Erro na autenticação:", error);
         setAuthError("E-mail ou senha incorretos. Por favor, tente novamente.");
+        console.error(error);
       });
   };
 
@@ -102,7 +118,7 @@ function LoginForm() {
             <span>
               <strong>Meu DOE+</strong>!
             </span>
-            <a href="">CADASTRE-SE</a>
+            <Link to="/cadastro">CADASTRE-SE</Link>
           </div>
         </form>
       </div>

@@ -2,31 +2,32 @@ import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
 
 function isAuthenticated() {
-  const token = Cookies.get("auth_token");
-  return !!token;
+  const authToken = Cookies.get("auth_token");
+  return !!authToken;
 }
 
 function hasRole(requiredRoles) {
-  const user = Cookies.get("user");
-  if (user) {
-    const userData = JSON.parse(user);
-    return requiredRoles.includes(userData.role);
+  try {
+    const user = JSON.parse(Cookies.get("user") || "{}");
+    return user.role && requiredRoles.includes(user.role);
+  } catch {
+    return false;
   }
-  return false;
 }
 
 function PrivateRoute({ children, requiredRole }) {
-  const isLoggedIn = isAuthenticated();
-  const hasRequiredRole = hasRole(requiredRole);
+  const roles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
+  if (!isAuthenticated()) {
+    return <Navigate to="/login" />;
+  }
 
-  if (!isLoggedIn) return <Navigate to="/login" />;
-
-  if (!hasRequiredRole)
+  if (!hasRole(roles)) {
     return (
       <div className="container-acesso-negado">
         <div className="acesso-negado">Acesso Negado</div>
       </div>
     );
+  }
 
   return children;
 }

@@ -3,11 +3,13 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import NavBar from "./components/Navegation";
 import LoginForm from "./components/LoginForm";
 import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
 import AdminPage from "./components/AdminPage";
 import SobrePage from "./components/SobrePage";
 import ResetPasswordForm from "./components/ResetPasswordForm";
 import NotFoundPage from "./components/NotFoundPage";
 import CadastroForm from "./components/CadastroForm";
+import HomePage from "./components/HomePage";
 
 function App() {
   return (
@@ -22,12 +24,39 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route path="/" element={<PrivateRoute requiredRole="admin"></PrivateRoute>} />
+          <Route
+            path="/"
+            element={
+              <PrivateRoute requiredRole={["admin", "tecnico", "doador", "instituicao"]}>
+                <HomePage />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <PublicRoute redirectTo="/">
+                <LoginForm />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/reset-password"
+            element={
+              <PublicRoute redirectTo="/">
+                <ResetPasswordForm />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/cadastro"
+            element={
+              <PublicRoute redirectTo="/">
+                <CadastroForm />
+              </PublicRoute>
+            }
+          />
           <Route path="/sobre" element={<SobrePage />} />
-          <Route path="/login" element={<LoginForm />} />
-          <Route path="/reset-password" element={<ResetPasswordForm />} />
-          <Route path="/cadastro" element={<CadastroForm />} />
-
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Layout>
