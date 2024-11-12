@@ -1,10 +1,9 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
-const ChartView = ({ chartDataProp }) => {
+const ChartArea = ({ chartDataProp }) => {
   const series = [
     {
-      name: "Quantidade de litros de sangue",
       data: chartDataProp.prices, // Usa dados do chartDataProp para o array de preços
     },
   ];
@@ -12,6 +11,13 @@ const ChartView = ({ chartDataProp }) => {
   const options = {
     stroke: {
       width: 2,
+    },
+    title: {
+      text: "Doadores Mensais",
+      style: {
+        fontSize:  '18px',
+        fontFamily:  "Poppins",
+      }
     },
     colors: ["#C8513F"],
     chart: {
@@ -33,10 +39,7 @@ const ChartView = ({ chartDataProp }) => {
     markers: {
       size: 0,
     },
-    title: {
-      text: "Quantidade Litros Mensais",
-      align: "center",
-    },
+    
     fill: {
       type: "gradient",
       gradient: {
@@ -61,16 +64,14 @@ const ChartView = ({ chartDataProp }) => {
     xaxis: {
       position: "top",
       categories: chartDataProp.dates,
-      title: {
-        text: "Meses",
-      },
+      
     },
     tooltip: {
       shared: true,
     },
   };
 
-  return <ReactApexChart options={options} series={series} type="area" height={600} width={1000} />;
+  return <ReactApexChart options={options} series={series} type="area" height={380} width={400} />;
 };
 
-export default ChartView;
+export default ChartArea;
