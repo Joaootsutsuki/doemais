@@ -1,5 +1,12 @@
 import { bolsa, calendario, gotaSangue, banner, papeis } from "../assets/homePage"; //Imagens utilizadas no homepage
 
+import ChartView from "./ApexChart";
+
+const chartData = {
+  prices: [10, 15, 14, 18, 20, 18, 25, 28, 23, 30, 20, 20],
+  dates: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+};
+
 function HomePage() {
   return (
     <div className="home-page-container">
@@ -42,6 +49,7 @@ function HomePage() {
             </div>
           </div>
         </div>
+        <ChartView chartDataProp={chartData} />
       </main>
     </div>
   );

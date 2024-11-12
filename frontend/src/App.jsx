@@ -24,14 +24,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute requiredRole={["admin", "tecnico", "doador", "instituicao"]}>
-                <HomePage />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/" element={<HomePage />} />
           <Route
             path="/login"
             element={
