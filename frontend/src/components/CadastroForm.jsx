@@ -4,6 +4,7 @@ import Cookies from "js-cookie";
 import { useNavigate, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import InputMask from "react-input-mask";
+import config from "../config/urlConfig";
 
 function CadastroForm() {
   const {
@@ -18,6 +19,7 @@ function CadastroForm() {
   const [tipoConta, setTipoConta] = useState("fisica");
   const [isTermsChecked, setIsTermsChecked] = useState(false);
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
+  const [message, setMessage] = useState("");
 
   const handleTipoContaChange = (event) => {
     setTipoConta(event.target.value);
@@ -28,7 +30,7 @@ function CadastroForm() {
 
   useEffect(() => {
     setIsPasswordMatch(password === confirmPassword);
-  }, [password, confirmPassword, navigate]);
+  }, [password, confirmPassword]);
 
   const formatDatas = (data) => {
     const value = data.tipo_sanguineo;
@@ -36,16 +38,45 @@ function CadastroForm() {
     data.telefone = data.telefone.replace(/\D/g, "");
     data.tipo_sanguineo = value.replace(/[+\-]/, "");
     data.fator = value.slice(-1);
+    return data;
   };
 
   const onSubmit = (data) => {
-    formatDatas(data);
     if (!isPasswordMatch) {
-      alert("As senhas não coincidem.");
+      setMessage("As senhas não coincidem.");
       return;
     }
-    reset();
-    console.log(data);
+
+    data.role = tipoConta === "fisica" ? "doador" : "instituicao";
+
+    if (data.role == "doador") {
+      const formattedData = formatDatas(data);
+
+      axios
+        .post(`${config.apiUrl}/create-donor`, formattedData)
+        .then((response) => {
+          setMessage(response.data.message || "Cadastro realizado com sucesso!");
+          reset();
+        })
+        .catch((error) => {
+          setMessage(
+            error.response?.data?.message || "Ocorreu um erro ao cadastrar o usuário. Tente novamente."
+          );
+          console.error("Erro ao cadastrar o usuário: ", error);
+        });
+    } else {
+      axios
+        .post(`${config.apiUrl}/pending-institutions`, data)
+        .then((response) => {
+          setMessage("Cadastro enviado com sucesso. Aguarde a análise do administrador.");
+        })
+        .catch((error) => {
+          setMessage(
+            error.response?.data?.message || "Ocorreu um erro ao cadastrar o usuário. Tente novamente."
+          );
+          console.error("Erro ao cadastrar o usuário: ", error);
+        });
+    }
   };
 
   const renderPessoaJuridicaForm = () => (
@@ -70,12 +101,14 @@ function CadastroForm() {
           <label>Tipo *</label>
           <select {...register("tipo", { required: "Campo obrigatório" })}>
             <option value="">Selecione</option>
-            <option value="hospital">Hospital</option>
-            <option value="clinica">Clínica</option>
-            <option value="upas">Unidades de Pronto Atendimentos (UPAs)</option>
-            <option value="centro_de_tratamento _oncologico">Centro de Tratamento Oncológico</option>
-            <option value="instituicao_de_longa_ permanencia_para_idosos">
-              Instituição de Longa Permanência para Idosos (ILPIs)
+            <option value="Hospital">Hospital</option>
+            <option value="Clínica">Clínica</option>
+            <option value="Unidades de Pronto Atendimentos (UPAs)">
+              Unidades de Pronto Atendimentos (UPAs)
+            </option>
+            <option value="Centro de Tratamento Oncológico">Centro de Tratamento Oncológico</option>
+            <option value="Instituição de Longa Permanência para Idosos (ILPIs)">
+              Instituição de Longa Permanência para Idosos
             </option>
           </select>
           {errors.tipo && <p className="error-message">{errors.tipo.message}</p>}
@@ -158,7 +191,6 @@ function CadastroForm() {
         <div className="form-group">
           <label>Tipo sanguíneo *</label>
           <select {...register("tipo_sanguineo", { required: "Campo obrigatório" })}>
-            <option value="">Selecione</option>
             <option value="">Selecione</option>
             <option value="A+">A+</option>
             <option value="A-">A-</option>
@@ -255,6 +287,9 @@ function CadastroForm() {
           <h1>Criar conta</h1>
           <h1>Meu DOE+</h1>
         </div>
+        {message && (
+          <p className={message.includes("sucesso") ? "success-message" : "error-message"}>{message}</p>
+        )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
           {tipoConta === "fisica" ? renderPessoaFisicaForm() : renderPessoaJuridicaForm()}
@@ -271,6 +306,9 @@ function CadastroForm() {
               <label>
                 Li e estou de acordo com as <u>políticas da empresa e políticas de privacidade. </u>*
               </label>
+            </div>
+            <div className="link-login">
+              <Link to="/login">Realizar Login</Link>
             </div>
           </div>
           <div className="submitButton">

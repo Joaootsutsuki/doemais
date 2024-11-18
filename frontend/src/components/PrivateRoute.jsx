@@ -6,7 +6,7 @@ function isAuthenticated() {
   return !!authToken;
 }
 
-function hasRole(requiredRoles) {
+export function hasRole(requiredRoles) {
   try {
     const user = JSON.parse(Cookies.get("user") || "{}");
     return user.role && requiredRoles.includes(user.role);
@@ -15,7 +15,7 @@ function hasRole(requiredRoles) {
   }
 }
 
-function PrivateRoute({ children, requiredRole }) {
+export function PrivateRoute({ children, requiredRole }) {
   const roles = Array.isArray(requiredRole) ? requiredRole : [requiredRole];
   if (!isAuthenticated()) {
     return <Navigate to="/login" />;
@@ -31,5 +31,3 @@ function PrivateRoute({ children, requiredRole }) {
 
   return children;
 }
-
-export default PrivateRoute;

@@ -1,8 +1,9 @@
-const admin = require('firebase-admin');
-require('dotenv').config(); 
+var admin = require("firebase-admin");
+
+var serviceAccount = require("../doe-mais-c884c-firebase-adminsdk-3os12-35811be585.json");
 
 admin.initializeApp({
-  credential: admin.credential.cert(require(process.env.FIREBASE_ADMIN_SDK)),
+  credential: admin.credential.cert(serviceAccount),
 });
 
 module.exports = admin;

@@ -20,7 +20,7 @@ function SobrePage() {
           <Link to="/login" className="acessar-btn">
             Acessar
           </Link>
-          <Link to="/create-account" className="cadastrar-btn">
+          <Link to="/cadastro" className="cadastrar-btn">
             Cadastrar
           </Link>
         </div>

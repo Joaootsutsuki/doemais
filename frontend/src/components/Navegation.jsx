@@ -3,6 +3,7 @@ import logotipo from "../assets/logotipo.png";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import config from "../config/urlConfig";
+import { hasRole } from "./PrivateRoute"; // Importando o método para verificar permissões de usuário
 
 function Sidebar() {
   const navBarRef = useRef(null);
@@ -65,20 +66,62 @@ function Sidebar() {
           <div className="sidebar-content">
             <ul className="lists">
               <li className="list">
-                <a href="#" className="nav-link">
+                <Link to="/" className="nav-link">
                   <i className="bx bx-home-alt icon"></i>
-                  <span className="link">Dashboard</span>
-                </a>
+                  <span className="link">Home</span>
+                </Link>
               </li>
-              {/* Outros itens da lista */}
+
+              {hasRole(["doador"]) && (
+                <li className="list">
+                  <Link to="/agendar" className="nav-link">
+                    <i className="bx bx-calendar icon"></i>
+                    <span className="link">Agendar Doação</span>
+                  </Link>
+                </li>
+              )}
+              {hasRole(["doador"]) && (
+                <li className="list">
+                  <Link to="/minha-agenda" className="nav-link">
+                    <i className="bx bx-calendar-check icon"></i>
+                    <span className="link">Minha Agenda</span>
+                  </Link>
+                </li>
+              )}
+              {hasRole(["admin"]) && (
+                <li className="list">
+                  <Link to="/cadastrar-admin" className="nav-link">
+                    <i className="bx bx-user-plus icon"></i>
+                    <span className="link">Cadastrar Admin</span>
+                  </Link>
+                </li>
+              )}
+              {hasRole(["admin"]) && (
+                <li className="list">
+                  <Link to="/instituicoes/pendentes" className="nav-link">
+                    <i className="bx bxs-institution icon"></i>
+                    <span className="link">Status das Instituições</span>
+                  </Link>
+                </li>
+              )}
+              {hasRole(["instituicao"]) && (
+                <li className="list">
+                  <Link to="/solicitar-bolsa" className="nav-link">
+                    <i className="bx bx-send icon"></i>
+                    <span className="link">Solicitar Bolsas</span>
+                  </Link>
+                </li>
+              )}
+              {hasRole(["instituicao"]) && (
+                <li className="list">
+                  <Link to="/listar-solicitacoes" className="nav-link">
+                    <i className="bx bx-list-ul icon"></i>
+                    <span className="link">Minhas Solicitações</span>
+                  </Link>
+                </li>
+              )}
             </ul>
             <div className="bottom-content">
-              <li className="list">
-                <a href="#" className="nav-link">
-                  <i className="bx bx-cog icon"></i>
-                  <span className="link">Settings</span>
-                </a>
-              </li>
               <li className="list">
                 <Link to="/login" className="nav-link" onClick={() => Logout()}>
                   <i className="bx bx-log-out icon"></i>

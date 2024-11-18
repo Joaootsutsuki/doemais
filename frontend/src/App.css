@@ -21,7 +21,9 @@ body {
 
 .loginBox,
 .redefinirSenhaBox,
-.cadastro-container {
+.cadastro-container,
+.agenda-container,
+.solicitar-bolsas-container {
   width: 100%;
   height: 100vh;
   display: flex;
@@ -65,7 +67,9 @@ body {
 
 .loginForm .titulo,
 .redefinirSenhaForm .titulo,
-.cadastro-box .titulo {
+.cadastro-box .titulo,
+.agenda-box .titulo,
+.solicitar-bolsas-box .titulo {
   display: flex;
   gap: 5px;
   margin-bottom: 30px;
@@ -74,6 +78,9 @@ body {
 
 .titulo h1 {
   font-size: 4rem;
+}
+.agenda-box .titulo h1 {
+  font-size: 3rem;
 }
 
 .titulo h1:nth-of-type(2) {
@@ -105,7 +112,8 @@ body {
 
 .loginForm .submitButton,
 .redefinirSenhaForm .submitButton,
-.cadastro-box .submitButton {
+.cadastro-box .submitButton,
+.agenda-box .submitButton {
   width: 100%;
   margin-top: 10px;
   display: flex;
@@ -113,9 +121,16 @@ body {
   align-items: center;
 }
 
+.agenda-box .submitButton button,
+.solicitar-bolsas-box .submitButton button {
+  width: 70% !important;
+}
+
 .loginForm .submitButton button,
 .redefinirSenhaForm .submitButton button,
-.cadastro-box .submitButton button {
+.cadastro-box .submitButton button,
+.agenda-box .submitButton button,
+.solicitar-bolsas-box button {
   width: 100%;
   padding: 15px;
   background-color: #ba1644;
@@ -133,7 +148,9 @@ body {
 
 .loginForm .submitButton button:hover,
 .redefinirSenhaForm .submitButton button:hover,
-.cadastro-box .submitButton button:hover {
+.cadastro-box .submitButton button:hover,
+.agenda-box .submitButton button:hover,
+.solicitar-bolsas-box .submitButton button:hover {
   background-color: #9f123a;
 }
 
@@ -203,13 +220,13 @@ nav .logo {
 }
 .logo .menu-icon {
   color: #333;
-  font-size: 24px;
+  font-size: 2.4rem;
   margin-right: 30px;
   cursor: pointer;
 }
 .logo .logo-name {
   color: #333;
-  font-size: 22px;
+  font-size: 2.2rem;
   font-weight: 500;
 }
 nav .sidebar {
@@ -246,11 +263,11 @@ nav.open .sidebar {
   text-decoration: none;
 }
 .lists .nav-link:hover {
-  background-color: #4070f4;
+  background-color: #d02b3b;
 }
 .nav-link .icon {
   margin-right: 14px;
-  font-size: 20px;
+  font-size: 2rem;
   color: #707070;
 }
 .nav-link .link {
@@ -325,7 +342,7 @@ nav.open ~ .overlay {
 }
 
 .acesso-negado {
-  font-size: 40px;
+  font-size: 4rem;
   color: red;
   font-weight: bold;
 }
@@ -413,19 +430,21 @@ nav.open ~ .overlay {
   padding: 10px 20px;
   font-size: 1rem;
   cursor: pointer;
+  text-align: center;
+  text-decoration: none;
 }
 
 .sobre-container .acessar-btn:hover {
   background-color: #c02636;
   transform: scale(1.01);
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease;
 }
 
 .sobre-container .cadastrar-btn:hover,
 .home-page-container .content-box .cadastrar-btn:hover {
   background-color: #e6e6e6;
   transform: scale(1.02);
-  transition: all 0.1s ease-in-out;
+  transition: all 0.1s ease;
 }
 
 .sobre-container .sobre-image img {
@@ -443,6 +462,7 @@ nav.open ~ .overlay {
   align-items: center;
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 .not-found-page-box h1 {
@@ -513,7 +533,7 @@ nav.open ~ .overlay {
 .form-group select {
   width: 100%;
   padding: 14px;
-  font-size: 14px;
+  font-size: 1.4rem;
   border-radius: 5px;
   border: 1px solid #ccc;
 }
@@ -620,6 +640,7 @@ nav.open ~ .overlay {
   align-items: center;
   background: #fff4f9;
   box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
 }
 
 .box-btns-to-service .btns .btn {
@@ -639,9 +660,12 @@ nav.open ~ .overlay {
 .box-btns-to-service .btns .btn:hover {
   background-color: #e6e6e6;
   transform: scale(1.02);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
 }
-
+.btns a {
+  text-decoration: none;
+  color: black;
+}
 .box-btns-to-service .btns .btn img {
   width: 180px;
 }
@@ -654,4 +678,348 @@ nav.open ~ .overlay {
 
 .home-page-container main {
   margin: 60px 0 0 0;
+}
+
+.charts-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  padding: 100px 0 0 0;
+  flex-wrap: wrap;
+}
+
+.charts-container .chart {
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 35px;
+  text-align: center;
+}
+
+.charts-container .chart:first-child {
+  padding: 20px !important;
+}
+
+.parceiros-container h1 {
+  text-align: center;
+  margin: 100px 0 60px 0;
+  font-size: 5rem;
+}
+
+.parceiros-boxs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.parceiros-boxs .box {
+  box-shadow: 0px 4px 25px 0px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+}
+
+.parceiros-boxs .box:hover {
+  transform: scale(1.01);
+  transition: all 0.1s ease;
+}
+
+.parceiros-boxs .box img {
+  width: 350px;
+}
+
+.footer {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 40px 0 0 0;
+}
+
+.footer-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 900px;
+  width: 100%;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+footer .logo-icon {
+  height: 50px;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #ff6666;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.contact-info {
+  font-size: 1.4rem;
+  color: #333;
+  text-align: center;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.social-icon {
+  font-size: 2.8rem;
+  color: #ffffff;
+}
+
+.facebook {
+  background-color: #1877f2;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.instagram {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.agenda-box,
+.solicitar-bolsas-box {
+  width: 50%;
+  max-width: 1200px;
+  height: 60%;
+  background-color: #fff4f9;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.3);
+  padding: 100px;
+  flex-direction: column;
+}
+
+.agenda-form,
+.solicitar-bolsas-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 20px;
+}
+
+.loginForm .submitButton button:disabled,
+.cadastro-box .submitButton button:disabled,
+.agenda-box .submitButton button:disabled,
+.solicitar-bolsas-box .submitButton button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.loginForm .submitButton button:hover:not(:disabled),
+.cadastro-box .submitButton button:hover:not(:disabled),
+.agenda-box .submitButton button:hover:not(:disabled),
+.solicitar-bolsas-box .submitButton button:hover:not(:disabled) {
+  background-color: #ba1644;
+}
+.agenda-box .sublines,
+.solicitar-bolsas-box .sublines {
+  margin: 0 0 20px 0;
+}
+
+.solicitar-bolsas-box .titulo span {
+  color: #c45455;
+}
+
+.solicitar-bolsas-form .form-group label {
+  margin: 0 0 10px 0 !important;
+}
+
+.solicitar-bolsas-box .submitButton {
+  display: flex;
+  justify-content: center;
+}
+
+.css-cyfsxc-MuiPickersCalendarHeader-labelContainer {
+  font-size: 1.4rem !important;
+}
+.css-17f9e7e-MuiTypography-root-MuiDayCalendar-weekDayLabel {
+  font-size: 1.1rem !important;
+}
+.css-4k4mmf-MuiButtonBase-root-MuiPickersDay-root {
+  font-size: 1rem !important;
+}
+
+.link-login {
+  padding: 10px 0 0 0;
+  font-size: 1.2rem;
+}
+.instituicoes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 100px 0 0 0;
+  flex-wrap: wrap;
+}
+
+.instituicoes-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+}
+
+.instituicoes-container .box {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 500px;
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.instituicoes-container h1 {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.instituicoes-container p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
+.instituicoes-container strong {
+  color: #333;
+}
+
+.instituicoes-container .buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.instituicoes-container button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.instituicoes-container .approve-btn {
+  background-color: #4caf50;
+  color: white;
+}
+
+.instituicoes-container .approve-btn:hover {
+  background-color: #45a049;
+}
+
+.instituicoes-container .reject-btn {
+  background-color: #f44336;
+  color: white;
+}
+
+.instituicoes-container .reject-btn:hover {
+  background-color: #e53935;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 70px;
+}
+
+.instituicoes-box h3 {
+  font-size: 1.5rem;
+}
+
+.solicitacoes p {
+  font-size: 1.3rem;
+}
+
+@media (max-width: 425px) {
+  .home-page-container header .background-color {
+    display: none !important;
+  }
+  .home-page-container header .home-page-banner,
+  .home-page-container .content-box {
+    position: static !important;
+    transform: none;
+    width: 425px !important;
+  }
+  .home-page-container header .home-page-banner img {
+    width: 425px !important;
+    min-width: 0;
+    min-height: 0;
+  }
+  .parceiros-boxs {
+    gap: 30px !important;
+  }
+
+  .parceiros-boxs .box img {
+    width: 170px !important;
+  }
+  footer .logo-icon {
+    height: 30px !important;
+  }
+  .contact-info {
+    font-size: 1rem;
+    display: none;
+  }
+  .footer-content {
+    justify-content: center;
+    gap: 50px;
+  }
+  .parceiros-boxs .box {
+    box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.3) !important;
+  }
+  .slogan {
+    margin-left: 30px !important;
+    flex-direction: column !important;
+  }
+
+  .slogan h2 {
+    margin: 5px 0 0 20px;
+  }
+  .titulo h1 {
+    font-size: 2.2rem;
+  }
+  .banner-container {
+    display: none;
+  }
+  .loginContent,
+  .redefinirSenhaContent {
+    width: 90%;
+    height: 70%;
+    justify-content: center;
+  }
+  .loginForm,
+  .redefinirSenhaForm {
+    width: 100% !important;
+  }
+
+  .cadastro-box {
+    width: 90%;
+    height: auto;
+    padding: 60px;
+  }
+
+  .pagination {
+    position: static;
+  }
 }
